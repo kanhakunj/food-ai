@@ -1,11 +1,57 @@
 import React, { useState } from "react";
 import { Utensils, Flame, Sparkles, ChefHat, Salad } from "lucide-react";
+import { RECIPE_IMAGES } from "../data/culinaryData";
 
 interface RecipeImageProps {
   src?: string;
   title: string;
   cuisine?: string;
   className?: string;
+}
+
+export function resolveRecipePhoto(
+  title: string,
+  cuisine?: string,
+  explicitSrc?: string
+): string {
+  if (explicitSrc && !explicitSrc.startsWith("/src/assets/images/")) {
+    return explicitSrc;
+  }
+  const text = `${title} ${cuisine || ""}`.toLowerCase();
+  if (
+    text.includes("salmon") ||
+    text.includes("fish") ||
+    text.includes("miso") ||
+    text.includes("japanese") ||
+    text.includes("asian") ||
+    text.includes("rice") ||
+    text.includes("seafood")
+  ) {
+    return RECIPE_IMAGES.salmon;
+  }
+  if (
+    text.includes("pasta") ||
+    text.includes("tagliatelle") ||
+    text.includes("noodle") ||
+    text.includes("spaghetti") ||
+    text.includes("italian") ||
+    text.includes("butter") ||
+    text.includes("lemon")
+  ) {
+    return RECIPE_IMAGES.pasta;
+  }
+  if (
+    text.includes("cauliflower") ||
+    text.includes("tahini") ||
+    text.includes("salad") ||
+    text.includes("roast") ||
+    text.includes("vegan") ||
+    text.includes("plant") ||
+    text.includes("vegetable")
+  ) {
+    return RECIPE_IMAGES.cauliflower;
+  }
+  return RECIPE_IMAGES.shakshuka;
 }
 
 export const RecipeImage: React.FC<RecipeImageProps> = ({
@@ -15,21 +61,22 @@ export const RecipeImage: React.FC<RecipeImageProps> = ({
   className = "w-full h-full object-cover",
 }) => {
   const [hasError, setHasError] = useState(false);
+  const photoUrl = resolveRecipePhoto(title, cuisine, src);
 
-  // If explicit working src is provided and no error occurred, render it
-  if (src && !hasError && !src.startsWith("/src/assets/images/")) {
+  if (!hasError && photoUrl) {
     return (
       <img
-        src={src}
+        src={photoUrl}
         alt={`${title}${cuisine ? ` — ${cuisine}` : ""}`}
         referrerPolicy="no-referrer"
+        loading="lazy"
         onError={() => setHasError(true)}
         className={className}
       />
     );
   }
 
-  // Refined architectural culinary illustration & palette for each dish profile
+  // Refined architectural culinary illustration fallback if image load fails
   const text = `${title} ${cuisine || ""}`.toLowerCase();
 
   let theme = {
@@ -105,7 +152,6 @@ export const RecipeImage: React.FC<RecipeImageProps> = ({
     <div
       className={`relative flex flex-col justify-between p-6 bg-gradient-to-br ${theme.bg} border-b ${theme.border} text-[#18181B] select-none ${className}`}
     >
-      {/* Decorative culinary background watermark geometry */}
       <div className="absolute top-3 right-4 font-mono text-3xl opacity-25">
         {theme.motif}
       </div>

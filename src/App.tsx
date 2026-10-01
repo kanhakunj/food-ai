@@ -15,6 +15,7 @@ import {
   Recipe,
   ShoppingItem,
   SubstitutionResponse,
+  HERO_IMAGE_URL,
   PANTRY_CATEGORIES,
   ALL_KNOWN_INGREDIENTS,
   PANTRY_PRESETS,
@@ -581,11 +582,18 @@ export function App() {
               {/* Right 5 Cols: Culinary Feature Card */}
               <div className="lg:col-span-5">
                 <div className="rounded-xl overflow-hidden border border-[#E5E4DF] bg-white shadow-sm">
-                  <div className="aspect-16/9 w-full">
-                    <RecipeImage
-                      title={evaluatedRecipes[0]?.recipe.title || "Spiced Cast-Iron Shakshuka"}
-                      cuisine={evaluatedRecipes[0]?.recipe.cuisine || "Levantine"}
+                  <div className="aspect-16/9 w-full relative overflow-hidden bg-[#EFECE6]">
+                    <img
+                      src={HERO_IMAGE_URL}
+                      alt="Pantry counter arranged with fresh culinary ingredients"
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover"
                     />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end p-4">
+                      <span className="text-xs text-white/90 font-mono">
+                        Pantry Ingredients Matching
+                      </span>
+                    </div>
                   </div>
                   <div className="p-6 space-y-4">
                     <div className="flex items-center justify-between text-xs text-[#52525B] font-mono tabular-nums">
@@ -1062,6 +1070,7 @@ export function App() {
                           className="aspect-4/3 w-full bg-[#EFECE6] overflow-hidden cursor-pointer relative"
                         >
                           <RecipeImage
+                            src={recipe.imageUrl}
                             title={recipe.title}
                             cuisine={recipe.cuisine}
                             className="w-full h-full"

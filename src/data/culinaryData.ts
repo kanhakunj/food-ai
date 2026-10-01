@@ -79,6 +79,20 @@ export interface SubstitutionResponse {
   substitutions: SubstitutionOption[];
 }
 
+export const HERO_IMAGE_URL =
+  "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=1200&auto=format&fit=crop";
+
+export const RECIPE_IMAGES = {
+  shakshuka:
+    "https://images.unsplash.com/photo-1590412200988-a436970781fa?q=80&w=800&auto=format&fit=crop",
+  salmon:
+    "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=800&auto=format&fit=crop",
+  pasta:
+    "https://images.unsplash.com/photo-1621996346565-e3d5d6281242?q=80&w=800&auto=format&fit=crop",
+  cauliflower:
+    "https://images.unsplash.com/photo-1540420773420-3366772f4999?q=80&w=800&auto=format&fit=crop",
+};
+
 export const PANTRY_CATEGORIES: PantryCategory[] = [
   {
     id: "produce",
@@ -258,6 +272,7 @@ export const CURATED_RECIPES: Recipe[] = [
     zeroWasteTip:
       "Finely chop the tender parsley stems and sauté them alongside the onions and bell peppers instead of discarding them.",
     pairingSuggestion: "Mint-steeped green tea or a chilled dry rosé.",
+    imageUrl: RECIPE_IMAGES.shakshuka,
     nutrition: {
       calories: 490,
       proteinGrams: 22,
@@ -387,6 +402,7 @@ export const CURATED_RECIPES: Recipe[] = [
     zeroWasteTip:
       "Steep the peeled ginger skins and scallion root trimmings in the rice cooking water to infuse subtle aromatic complexity.",
     pairingSuggestion: "Chilled Junmai Ginjo sake or roasted barley tea.",
+    imageUrl: RECIPE_IMAGES.salmon,
     nutrition: {
       calories: 580,
       proteinGrams: 38,
@@ -503,6 +519,7 @@ export const CURATED_RECIPES: Recipe[] = [
     zeroWasteTip:
       "Save your Parmigiano-Reggiano rinds in the freezer to simmer in vegetable broths or minestrone.",
     pairingSuggestion: "Crisp Pinot Grigio or sparkling mineral water with lemon peel.",
+    imageUrl: RECIPE_IMAGES.pasta,
     nutrition: {
       calories: 610,
       proteinGrams: 19,
@@ -596,6 +613,7 @@ export const CURATED_RECIPES: Recipe[] = [
     zeroWasteTip:
       "Roast the outer cauliflower florets and tender inner leaves alongside the steaks for a crispy salad topping the next day.",
     pairingSuggestion: "Dry Assyrtiko white wine or sparkling hibiscus infusion.",
+    imageUrl: RECIPE_IMAGES.cauliflower,
     nutrition: {
       calories: 440,
       proteinGrams: 13,
