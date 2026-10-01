@@ -1,0 +1,8 @@
+{
+  "name": "PantryPal",
+  "description": "AI-powered recipe generator that suggests delicious meal ideas based on the ingredients currently in your kitchen.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
